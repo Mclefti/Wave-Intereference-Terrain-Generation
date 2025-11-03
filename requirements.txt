@@ -1,0 +1,5 @@
+numpy>=1.23
+matplotlib>=3.7
+noise>=1.2.2
+PyWavelets>=1.5.0
+tk
