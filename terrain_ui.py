@@ -159,7 +159,7 @@ def export_obj(field, filename="terrain.obj", scale_z=50.0):
 class TerrainUI:
     def __init__(self, root):
         self.root = root
-        self.root.title("Dual Field Terrain Generator + OBJ Export + Wave Sources")
+        self.root.title("Dual Field Terrain Generator + OBJ Export + Wave Sources + Labels")
         self.root.configure(bg="#222")
 
         self.field1 = None
@@ -272,19 +272,65 @@ class TerrainUI:
 
     def _update_plot(self):
         self.fig.clf()
-        cols, titles = [], []
+        cols, titles, details = [], [], []
+
         if self.field1 is not None:
-            cols.append(self.field1); titles.append("Field 1")
+            algo1 = self.method1.get()
+            cols.append(self.field1)
+            titles.append(f"Field 1 – {algo1}")
+            if algo1 == "WaveInterference":
+                details.append("Bright = constructive, dark = destructive")
+            else:
+                details.append("Brown = high, green = low")
+
         if self.field2 is not None:
-            cols.append(self.field2); titles.append("Field 2")
+            algo2 = self.method2.get()
+            cols.append(self.field2)
+            titles.append(f"Field 2 – {algo2}")
+            if algo2 == "WaveInterference":
+                details.append("Bright = constructive, dark = destructive")
+            else:
+                details.append("Brown = high, green = low")
+
         if self.hybrid is not None:
-            cols.append(self.hybrid); titles.append("Hybrid")
+            mode = self.hybrid_mode.get()
+            cols.append(self.hybrid)
+            titles.append(f"Result (Hybrid Mode: {mode})")
+            details.append("Brown = high, green = low")
+
+        # Create axes and show images
         for i, field in enumerate(cols):
-            ax = self.fig.add_subplot(1, len(cols), i+1)
+            ax = self.fig.add_subplot(1, len(cols), i + 1)
             ax.imshow(field, cmap="terrain", origin="lower")
-            ax.set_title(titles[i], color="white", fontsize=9)
             ax.axis("off")
-        self.fig.tight_layout()
+
+            # Title inside but near the top (visible area)
+            ax.text(
+                0.5, 1.05, titles[i],
+                transform=ax.transAxes,
+                ha="center", va="bottom",
+                fontsize=10, fontweight="bold",
+                color="white",
+                bbox=dict(facecolor='black', alpha=0.4, pad=3, edgecolor='none')
+            )
+
+            # Field-specific color description below
+            ax.text(
+                0.5, -0.10, details[i],
+                transform=ax.transAxes,
+                ha="center", va="top",
+                color="#ddd", fontsize=8
+            )
+
+        # Global legend text
+        self.fig.text(
+            0.5, -0.08,
+            "Color Key: dark green = lowlands, light green/yellow = midlands, brown = hills, white = peaks",
+            ha="center", color="#aaa", fontsize=8
+        )
+
+        # Adjust margins so titles fit inside visible area
+        self.fig.subplots_adjust(top=0.9, bottom=0.2, wspace=0.05)
         self.canvas.draw()
 
 # ===============================================================
