@@ -19,6 +19,8 @@ python main.py
 
 The graphical UI will launch automatically.
 
+
+
 🧭 Interface Overview
 Section	Description
 Field 1 (Base)	The first terrain field (e.g., Perlin, Simplex, etc.)
@@ -28,6 +30,9 @@ Circular Waves	Toggles between plane waves and circular wave propagation
 Combination Mode	Determines how Field 1 and Field 2 are mixed — blend, multiply, ridge, hybrid blend, etc.
 OBJ Export	Saves the generated hybrid field as a 3D .obj mesh suitable for import into Blender
 Grid Size	Sets the terrain resolution (e.g., 128, 256, 512)
+
+
+
 🌊 Algorithms Supported
 Algorithm	Description
 Perlin	Smooth coherent noise ideal for rolling hills
@@ -36,12 +41,16 @@ Fractal Subdivision	Midpoint displacement for jagged mountainous terrain
 Wave Interference	Superposition of sinusoidal waves — mimics interference or dune-like patterns
 Hybrid Ridge	Combines fields emphasizing ridge-like features
 Hybrid Blend	Weighted average combination for smoother transitions
+
+
 🧩 Combination Modes
 Mode	Effect
 blend	Weighted average between both fields
 multiply	Multiplies field intensities (increases contrast)
 ridge	Emphasizes peaks and ridges
 hybrid blend	Combines low and high frequency from both fields
+
+
 🎨 Color Legend
 Color	Meaning
 🟩 Green	Lowlands
@@ -49,13 +58,8 @@ Color	Meaning
 🟫 Brown	Hills
 ⚪ White	Peaks
 🌊 Bright / Dark	Constructive / Destructive interference (for wave fields)
-🖼️ Example Output
 
-(You can add your screenshots here)
 
-+-----------------+-----------------+-----------------+
-|   Field 1       |   Field 2       |   Hybrid Result |
-+-----------------+-----------------+-----------------+
 
 🧠 Notes
 
