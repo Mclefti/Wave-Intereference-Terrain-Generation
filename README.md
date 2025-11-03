@@ -3,18 +3,18 @@
 📦 Requirements
 
 Python 3.9+
+listed in requrements.txt
+
+
 Install dependencies via pip:
 
-pip install numpy matplotlib noise pywavelets tk
-
-
-(Optional: if you use Blender integration or 3D OBJ export, these are already supported via NumPy output.)
+pip install -r requirements.txt
 
 🚀 How to Run
 
 Clone or download this repository, then in your terminal:
 
-python main.py
+python terrain_ui.py
 
 
 The graphical UI will launch automatically.
